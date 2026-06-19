@@ -1,4 +1,4 @@
-apiVerson: apps/v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: argocd-hello
@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: go-hello-http
-          image: "{{ .Values.image.repository }}:{{ default .Values.image.tag }}"
+          image: "{{ .Values.image.repository }}:{{ default .Values.image.tag | default 'latest' }}"
           ports:
             - containerPort: 80
